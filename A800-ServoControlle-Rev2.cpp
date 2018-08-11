@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <Wire.h>
-//#include <PinChangeInterrupt.h>
 #include <Adafruit_MCP4725.h>
 
 #define PWM_SP_CH		0
@@ -31,14 +30,13 @@ void runPID();
 
 void ISP_PWM_SP(void);
 //void ISP_PWM_PGain(void);
-//void ISP_PWM_DGain(void);
 
 uint8_t channel_pin[] = {2,3,4/*, 5, 6*/};
 unsigned int PWM_Rising_Time[] = {0, 0, 0, 0};
 unsigned int PWM_period[] = {0, 0, 0, 0};
 unsigned int Last_PWM_period[] = {0, 0, 0, 0};
 unsigned char PWM_SP_ReadComplete = 0;
-unsigned char PWM_PGain_ReadComplete = 0;
+//unsigned char PWM_PGain_ReadComplete = 0;
 //unsigned char PWM_DGain_ReadComplete = 0;
 
 double Feedback_Angle;
@@ -116,8 +114,6 @@ void loop() {
 
 void runPID(){
 	Error = Setpoint_Angle - Feedback_Angle;
-	//if(Error >= MAX_ANGLE) Error = MAX_ANGLE;
-	//if(Error<= MIN_ANGLE) Error = MIN_ANGLE;
 	FreqOut = PGain*Error + DGain*(Error-Last_Error);
 	Last_Error = Error;
 }
@@ -184,11 +180,6 @@ void ISP_PWM_PGain(void) {
 	}
 }*/
 
-/*
-void ISP_PWM_IGain(void) {
-	readReceiver(PWM_IGain_CH);
-}
-*/
 /*
 void ISP_PWM_DGain(void) {
 		if(PWM_DGain_ReadComplete == 0){
