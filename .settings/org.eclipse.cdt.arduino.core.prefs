@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+libraries=["I2C-Sensor-Lib iLib","Adafruit MCP4725",{"package"\:"arduino","platform"\:"avr","library"\:"Wire"},"PinChangeInterrupt","WireData","cI2C"]
